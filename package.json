@@ -1,0 +1,19 @@
+{
+    "name": "nodejs-ci",
+    "version": "1.0.0",
+    "description": "Node.js CI example project",
+    "main": "index.js",
+    "scripts": {
+      "build": "echo 'Building the project...'",
+      "test": "echo 'Running tests...' && exit 0",
+      "ci": "npm install && npm test"
+    },
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+
+    },
+    "devDependencies": {
+
+     
+  
