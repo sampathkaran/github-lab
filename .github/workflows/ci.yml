@@ -1,0 +1,31 @@
+name: Python CI
+
+on:
+  pull_request:
+    branches:
+      - main  # Adjust the branch name as per your project
+  # push:
+  #   branches:
+  #     - main  # Adjust the branch name as per your project
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'  # Change Python version as per your requirement
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt  # If you have any dependencies, otherwise skip this step
+
+      - name: Run test script
+        run: |
+          python test.py  # This will run the `test.py` script
+
