@@ -1,31 +1,18 @@
-name: Python CI
-
+# Based on https://github.com/actions/starter-workflows/blob/main/ci/node.js.yml
+name: CI
 on:
   pull_request:
     branches:
-      - main  # Adjust the branch name as per your project
-  # push:
-  #   branches:
-  #     - main  # Adjust the branch name as per your project
-
+      - main
 jobs:
-  test:
+  ci:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.8'  # Change Python version as per your requirement
-
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt  # If you have any dependencies, otherwise skip this step
-
-      - name: Run test script
-        run: |
-          python test.py  # This will run the `test.py` script
-
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: lts/*
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run build --if-present
+    - run: npm test
